@@ -8,3 +8,5 @@ One must complete the script before running the program. It is recommended that 
 The lines have also been put into a .txt file named 'script'. 
 
 This program uses the github-linguistic tool, please make sure this has been installed correctly.
+
+The file.txt contains the statistics gathered locally from github to test the assessment.
