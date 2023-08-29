@@ -1,7 +1,11 @@
-fname = 'file.txt'
+require 'rugged'
+require 'linguist'
 
-array = []
-IO.foreach("file.txt") {|x| array.push(x.split) }
+repo = Rugged::Repository.new('./lsst-control')
+project=Linguist::Repository.new(repo,repo.head.target_id)
+
+array = project.languages.to_a
+
 p array
 
 size = array.length-1
@@ -10,27 +14,23 @@ progNames = []
 
 progSize = []
 
-progPerc = []
-
 
 for x in 0..size do
-    progNames.push(array[x][2])
+    progNames.push(array[x][0])
 end
 
 for x in 0..size do
-    progSize.push(array[x][1])
+    progSize.push(array[x][1].to_s)
 end
 
-for x in 0..size do
-    progPerc.push(array[x][0])
-end
 
 write = []
 
 for x in 0..size do
     str1 = progNames[x]
     str2 = progSize[x]
-    write.push(str1 + ' with ' + str2 + ' megabytes of code.')
+    str3 = str1 + ' with ' + str2 + ' megabytes of code.'
+    write.push(str3)
 end
 
 total = 0
